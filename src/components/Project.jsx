@@ -27,7 +27,7 @@ function Project({ project, fecha }) {
         <p className="text-center mt-2 mb-5 text-base">{descripcioncProject}</p>
       </div>
       <div className="flex pt-0 mt-10 pb-4">
-        <img className="h-14 w-14 rounded-full" src={project.userphotoURL} alt="avatar de usuario" alt="" />
+        <img className="h-14 w-14 rounded-full" src={project.userphotoURL} alt="avatar de usuario"/>
         <h4 className="align-middle text-lg ml-3 font-semibold mt-4">{project.userName}</h4>
         <div className="absolute right-0 mt-3 mr-6">
           <p className="text-lg">Fecha de creaci&oacute;n: {fecha}</p>
@@ -67,6 +67,7 @@ function Project({ project, fecha }) {
           className="mb-5 mr-5 absolute right-0 bg-gray-800 text-white p-2 rounded-md cursor-pointer"
           href={urlProject}
           target="_blank"
+          rel="noreferrer"
         >
           Previsualizaci&oacute;n
         </a>

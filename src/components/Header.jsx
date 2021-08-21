@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 //import avatarDefault from '../images/avatar-default.png';
 import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "./context/firebaseAuth";
