@@ -1,4 +1,4 @@
-#Project Stores
+# Project Store
 
 Aplicación web Project Store es un sitio donde puedes publicar los proyectos que has realizado en tu carrera profesional, haciendo público para todos los que visiten el sitio, además que se puede calificar la calidad de los proyectos y agregar comentarios para los creadores de los proyectos.
 
