@@ -1,3 +1,7 @@
+# Project Store
+
+Aplicación web Project Store es un sitio donde puedes publicar los proyectos que has realizado en tu carrera profesional, haciendo público para todos los que visiten el sitio, además que se puede calificar la calidad de los proyectos y agregar comentarios para los creadores de los proyectos.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
