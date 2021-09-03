@@ -3,11 +3,7 @@ import HomePage from "./components/pages/HomePage";
 import Header from "./components/Header";
 import { firebaseAuth } from "./components/firebase/config";
 import Footer from "./components/Footer";
-import {
-  Route,
-  BrowserRouter as Router,
-  Switch
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import UserProjects from "./components/pages/protected/UserProjects";
 import { UserContext } from "./components/context/firebaseAuth";
 import DetallesProject from "./components/pages/DetallesProject";
@@ -22,7 +18,6 @@ function App() {
     palabraBusqueda: "",
     tipoBusqueda: "project",
   });
-  
 
   const ActualizarBusqueda = (e) => {
     setBusqueda({
@@ -49,9 +44,21 @@ function App() {
   if (checking) {
     return (
       <div className="min-h-screen text-center items-center flex-col flex">
-        <h2 className="text-5xl m-auto align-middle">Espere... 
-          <svg className="w-8 h-8 ml-12 animate-spin origin-center align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        <h2 className="text-5xl m-auto align-middle">
+          Espere...
+          <svg
+            className="w-8 h-8 ml-12 animate-spin origin-center align-middle"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+            />
           </svg>
         </h2>
       </div>

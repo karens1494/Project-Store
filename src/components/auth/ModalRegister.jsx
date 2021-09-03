@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { authFacebook, authGoogle, firebaseAuth, userSignOut } from "../firebase/config";
+import { authGoogle, firebaseAuth, userSignOut } from "../firebase/config";
 import { useHistory } from "react-router-dom";
-import logoFacebook from "../../images/logo-facebook-auth.png";
 import logoGoogle from "../../images/logo-google.png";
 import { createUser } from "../firebase/database";
 import ModalMessage from "../ModalMessage";
@@ -14,38 +13,30 @@ const ModalRegister = ({ setModalRegister }) => {
 
   const registerUser = async (provider) => {
     try {
-      await firebaseAuth()
-        .signInWithPopup(provider)
-        .then(async (result) => {
-          const credential = result.credential;
-          const token = credential.accessToken;
-          const userRegister = {
-            userId: result.user.uid,
-            userName: result.user.displayName,
-            userEmail: result.user.email,
-            userphotoURL: `${result.user.photoURL}?access_token=${token}`,
-          };
+      const result = await firebaseAuth().signInWithPopup(provider);
 
-          if (provider === authFacebook) {
-            result.user.updateProfile({
-              photoURL: userRegister.userphotoURL,
-            });
-          }
-          console.log(userRegister);
-          const resultado = await createUser(userRegister);
-          console.log(resultado.message);
-          switch (resultado.message) {
-            case "Realizado":
-              history.go(0);
-              break;
-            case "Registrado":
-              alert("Usuario ya registrado, por favor inicie sesión");
-              setMessage();
-              setShowModalMessage(true);
-              userSignOut();
-              break;
-          }
-        });
+      const userRegister = {
+        userId: result.user.uid,
+        userName: result.user.displayName,
+        userEmail: result.user.email,
+        userphotoURL: result.user.photoURL,
+      };
+
+      const resultado = await createUser(userRegister);
+      switch (resultado.message) {
+        case "Realizado":
+          history.go(0);
+          break;
+        case "Registrado":
+          alert("Usuario ya registrado, por favor inicie sesión");
+          setMessage();
+          setShowModalMessage(true);
+          userSignOut();
+          break;
+          default:
+          throw resultado;
+      }
+
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -76,7 +67,11 @@ const ModalRegister = ({ setModalRegister }) => {
               </div>
               {/*body*/}
               <div className="relative p-6 flex-auto items-center text-center">
-                <img src="https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U" className="rounded-full m-auto w-24 h-24" alt="" />
+                <img
+                  src="https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U"
+                  className="rounded-full m-auto w-24 h-24"
+                  alt=""
+                />
                 <h1 className="p-2 text-center font-header m-auto text-5xl">BIENVENIDO!</h1>
                 {/* <button
                   className="inline-flex items-center bg-facebook border-2 text-white active:bg-blue-800 font-bold text-lg rounded-3xl hover:shadow-2xl focus:outline-none p-2 mb-2 w-4/5"

@@ -1,17 +1,16 @@
 import React from "react";
-import logoFacebook from "../../images/logo-facebook-auth.png";
 import logoGoogle from "../../images/logo-google.png";
-import { authFacebook, authGoogle, firebaseAuth } from "../firebase/config";
+import { authGoogle, firebaseAuth } from "../firebase/config";
 
 const ModalLogin = ({ setModalLogin }) => {
-  const IniciarSesion = (provider) => {
-    firebaseAuth()
-      .signInWithPopup(provider)
-      .catch((error) => {
-        if (error.code === "auth/account-exists-with-different-credential") {
-          alert("La cuenta esta asociada a otro proveedor, por favor inicie sesión con el proveedor registrado");
-        }
-      });
+  const IniciarSesion = async (provider) => {
+    try {
+      await firebaseAuth().signInWithPopup(provider);
+    } catch (error) {
+      if (error.code === "auth/account-exists-with-different-credential") {
+        alert("La cuenta esta asociada a otro proveedor, por favor inicie sesión con el proveedor registrado");
+      }
+    }
   };
 
   return (
@@ -33,7 +32,11 @@ const ModalLogin = ({ setModalLogin }) => {
 
               {/*body*/}
               <div className="relative p-6 flex-auto items-center text-center">
-                <img src="https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U" className="rounded-full m-auto w-24 h-24 origin-center" alt="" />
+                <img
+                  src="https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U"
+                  className="rounded-full m-auto w-24 h-24 origin-center"
+                  alt=""
+                />
                 <h1 className="p-2 text-center font-header m-auto text-5xl">BIENVENIDO!</h1>
                 <div className="container items-center">
                   {/* <button

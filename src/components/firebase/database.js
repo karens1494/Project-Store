@@ -56,6 +56,8 @@ export const getSearchProjects = async (palabraBusqueda, tipoBusqueda) => {
       case "tipoProject":
         data = await firestoreDB.collectionGroup("projects").where("tipoProject", "==", palabraBusqueda).get();
         break;
+      default:
+        break;
     }
     data.forEach((doc) => {
       projectsFilter.push({

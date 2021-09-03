@@ -15,17 +15,18 @@ const ProjectList = ({ projects }) => {
 
   useEffect(() => {
     const sorted = [...projects].sort((a, b) => {
+      let value = 0;
       if (a.calificacionProject < b.calificacionProject) {
-        return sort === "ascendente" ? 1 : -1;
+        value = sort === "ascendente" ? 1 : -1;
       }
       if (a.calificacionProject > b.calificacionProject) {
-        return sort === "ascendente" ? -1 : 1;
+        value = sort === "ascendente" ? -1 : 1;
       }
+      return value;
     });
-
     setSortprojects(sorted);
     setIsSorted(false);
-  }, [sort]);
+  }, [sort, projects]);
 
   if (isSorted) {
     return (
@@ -36,14 +37,14 @@ const ProjectList = ({ projects }) => {
   }
 
   return (
-    <div className="mx-4">
-      <div className="flex-row-reverse flex">
+    <div className="flex justify-center flex-col">
+      <div className="flex-row-reverse flex mr-6">
         <select className=" text-sm rounded-md p-2" onChange={ActualizarSorted}>
           <option value="ascendente">Ascendente</option>
           <option value="descendente">Descendente</option>
         </select>
       </div>
-      <div className="grid gap-4 grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-3 lg:grid-cols-6 w-full justify-center">
         {sortprojects.map((project) => {
           return (
             <Link key={project.idProject} to={`/projects/${project.idProject}`}>

@@ -16,7 +16,6 @@ const UserProjects = () => {
     const getData = async () => {
       try {
         const userProjects = await getUserProjects(user.uid);
-        console.log(userProjects);
         setProjects(userProjects);
         setChecking(false);
       } catch (error) {

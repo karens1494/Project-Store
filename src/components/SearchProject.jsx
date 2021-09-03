@@ -19,7 +19,7 @@ const SearchProject = () => {
       }
     };
     getData();
-  }, []);
+  }, [palabraBusqueda, tipoBusqueda]);
 
   if (checking) {
     return (
